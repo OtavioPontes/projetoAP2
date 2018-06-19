@@ -2,7 +2,8 @@ package projeto;
 
 public class Endereço {
 
-	protected static int gerarId = 0;
+	//Atributos
+	protected static int geraId = 0;
 	protected String id;
 	private String tipe = "Residencial";
 	private String tipoDeLogradouro;
@@ -14,7 +15,7 @@ public class Endereço {
 	private String cep;
 	
 	
-	
+	//Construtor 1
 	public Endereço(String tipe, String tipoDeLogradouro, String logradouro, int numero, String bairro,
 			String cidade, String estado, String cep) {
 		super();
@@ -26,10 +27,11 @@ public class Endereço {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.cep = cep;
+		geraId++;
 	}
 
 
-
+	//Construtor 2
 	public Endereço(String tipoDeLogradouro, String logradouro, int numero, String bairro, String cidade, String estado,
 			String cep) {
 		super();
@@ -40,12 +42,19 @@ public class Endereço {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.cep = cep;
+		geraId++;
 	}
 	
-	private String gerarId() {
-		return "";
+	private String gerarID() {
+		return ("Endereço - " + geraId);
 	}
 	
+	
+	public String getId() {
+		return id;
+	}
+
+
 	public String getTipe() {
 		return this.tipe;
 	}
@@ -112,9 +121,9 @@ public class Endereço {
 
 	@Override
 	public String toString() {
-		return "Endereço [id=" + id + ", tipe=" + tipe + ", tipoDeLogradouro=" + tipoDeLogradouro + ", logradouro="
-				+ logradouro + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado
-				+ ", cep=" + cep + "]";
+		return "Endereço [id:" + id + ", tipe:" + tipe + ", tipoDeLogradouro:" + tipoDeLogradouro + ", logradouro:"
+				+ logradouro + ", numero:" + numero + ", bairro:" + bairro + ", cidade:" + cidade + ", estado:" + estado
+				+ ", cep:" + cep + "]";
 	}
 
 
