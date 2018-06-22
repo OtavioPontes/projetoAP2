@@ -1,3 +1,4 @@
+package projeto;
 
 public class PessoaJuridica extends Pessoa{
 
@@ -10,7 +11,7 @@ public class PessoaJuridica extends Pessoa{
 		this.cnpj = cnpj;
 	}
 	
-	protected String gerarID() {
+	protected String gerarId() {
 		return null;
 	}
 	

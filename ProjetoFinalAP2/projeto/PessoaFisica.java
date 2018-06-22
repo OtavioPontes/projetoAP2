@@ -1,3 +1,4 @@
+package projeto;
 
 public class PessoaFisica extends Pessoa{
 
@@ -10,7 +11,8 @@ public class PessoaFisica extends Pessoa{
 		this.cpf = cpf;
 	}
 
-	protected String gerarID() {
+	protected String gerarId() {
+		
 		return null;
 	}
 	
@@ -68,4 +70,7 @@ public class PessoaFisica extends Pessoa{
 	public String toString() {
 		return "PessoaFisica [cpf=" + cpf + "]";
 	}
+
+	
+	
 }
