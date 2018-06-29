@@ -4,6 +4,7 @@ public class ContaCorrente extends Conta{
     
     //atributos
     private double limite;
+    private Poupanca contaPoupanca;
     
     //criação do scanner
     Scanner input = new Scanner(System.in);
