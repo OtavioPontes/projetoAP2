@@ -1,4 +1,3 @@
-package projeto;
 
 public class PessoaFisica extends Pessoa{
 
@@ -7,13 +6,15 @@ public class PessoaFisica extends Pessoa{
 	
 	public PessoaFisica (String nome, Endereço endereço, String cpf) {
 		this.nome = nome;
-		this.endereço = endereço;
+		//this.endereço = endereço;
 		this.cpf = cpf;
+		this.id = this.gerarID();
 	}
-
-	protected String gerarId() {
-		
-		return null;
+	
+	@Override
+	protected String gerarID() {
+		geraid++;
+		return "Int " + geraid;
 	}
 	
 	private boolean validaCPF() {
@@ -68,9 +69,6 @@ public class PessoaFisica extends Pessoa{
 	}
 
 	public String toString() {
-		return "PessoaFisica [cpf=" + cpf + "]";
+		return "PessoaFisica [Nome: " + nome + ", ID: " + id + ", Endereço: " + ", CPF: " + cpf + "]";
 	}
-
-	
-	
 }

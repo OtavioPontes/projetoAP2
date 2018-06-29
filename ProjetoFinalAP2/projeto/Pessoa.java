@@ -5,10 +5,10 @@ public abstract class Pessoa {
 	protected static int geraid = 0 ;
 	protected String id;
 	protected String nome;
-	protected Endereço endereço;
+	private Endereço endereço;
 
 	//Método de incremento do ID
-	protected abstract String gerarID() ;
+	protected abstract String gerarID();
 	
 	//Métodos que retornam dados
 	public String getNome() {
@@ -25,7 +25,7 @@ public abstract class Pessoa {
 
 	//Método que gera a String descritiva do objeto
 	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", endereço=" + endereço + "]";
+		return "Pessoa [Nome: " + nome + ", ID: " + id + ", Endereço: " + endereço + "]";
 	}
 	
 }

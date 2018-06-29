@@ -2,7 +2,7 @@
 public class Endereço {
 
 	//Atributos
-	protected static int geraId = 0;
+	protected static int geraid = 0;
 	protected String id;
 	private String tipe = "Residencial";
 	private String tipoDeLogradouro;
@@ -26,7 +26,7 @@ public class Endereço {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.cep = cep;
-		geraId++;
+		geraid++;
 	}
 
 
@@ -41,11 +41,11 @@ public class Endereço {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.cep = cep;
-		geraId++;
+		geraid++;
 	}
 	
 	private String gerarID() {
-		return ("Endereço - " + geraId);
+		return ("Endereço - " + geraid);
 	}
 	
 	
