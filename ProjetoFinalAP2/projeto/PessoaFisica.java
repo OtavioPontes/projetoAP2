@@ -1,22 +1,41 @@
+package projeto;
 
 public class PessoaFisica extends Pessoa{
 
+	//Atributos
 	protected static int geraid = 0;
 	private String cpf;
 	
+	//Construtor
 	public PessoaFisica (String nome, Endereço endereço, String cpf) {
-		this.nome = nome;
-		//this.endereço = endereço;
-		this.cpf = cpf;
-		this.id = this.gerarID();
-	}
-	
-	@Override
-	protected String gerarID() {
+		super(nome, endereço);
+		this.id = Integer.toString(geraid);
+		
+		/*if(validaCPF()==true){
+			this.cpf = cpf;
+		}
+		else{
+			while(validaCPF()==false){
+				try {
+					throw new PessoaException();
+				} catch (PessoaException e) {
+					System.out.println("O CPF digitado é inválido, por favor entre com um válido");
+					
+					e.printStackTrace();
+				}
+			}
+		}*/
+		this.cpf=cpf;
 		geraid++;
-		return "Int " + geraid;
+	}
+
+	//Método gerarId
+	protected String gerarId() {
+		
+		return null;
 	}
 	
+	//Método validaCpf
 	private boolean validaCPF() {
 		
 		int soma1=0, resto1=0, soma2=0, resto2=0;
@@ -63,12 +82,15 @@ public class PessoaFisica extends Pessoa{
 			return false;
 		}
 	}
-
+	//Método getCPF
 	public String getCPF() {
 		return this.cpf;
 	}
-
+	//Método toString
 	public String toString() {
-		return "PessoaFisica [Nome: " + nome + ", ID: " + id + ", Endereço: " + ", CPF: " + cpf + "]";
+		return super.toString()+"Cpf: "+this.cpf+"\n";
 	}
+
+	
+	
 }

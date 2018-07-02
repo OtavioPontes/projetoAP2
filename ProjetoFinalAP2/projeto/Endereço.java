@@ -1,10 +1,11 @@
+package projeto;
 
 public class Endereço {
 
 	//Atributos
-	protected static int geraid = 0;
+	protected static int geraId = 0;
 	protected String id;
-	private String tipe = "Residencial";
+	private String tipo = "Residencial";
 	private String tipoDeLogradouro;
 	private String logradouro; 
 	private int numero;
@@ -17,8 +18,8 @@ public class Endereço {
 	//Construtor 1
 	public Endereço(String tipe, String tipoDeLogradouro, String logradouro, int numero, String bairro,
 			String cidade, String estado, String cep) {
-		super();
-		this.tipe = tipe;
+		
+		this.id = Integer.toString(geraId);
 		this.tipoDeLogradouro = tipoDeLogradouro;
 		this.logradouro = logradouro;
 		this.numero = numero;
@@ -26,14 +27,14 @@ public class Endereço {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.cep = cep;
-		geraid++;
+		geraId++;
 	}
 
 
 	//Construtor 2
 	public Endereço(String tipoDeLogradouro, String logradouro, int numero, String bairro, String cidade, String estado,
 			String cep) {
-		super();
+		this.id = Integer.toString(geraId);
 		this.tipoDeLogradouro = tipoDeLogradouro;
 		this.logradouro = logradouro;
 		this.numero = numero;
@@ -41,21 +42,20 @@ public class Endereço {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.cep = cep;
-		geraid++;
+		geraId++;
 	}
 	
-	private String gerarID() {
-		return ("Endereço - " + geraid);
+	private String gerarId() {
+		return ("Endereço - " + geraId);
 	}
 	
-	
+	//Métodos get
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
-
-	public String getTipe() {
-		return this.tipe;
+	public String getTipo() {
+		return this.tipo;
 	}
 	
 	public String getTipoDeLogradouro() {
@@ -82,9 +82,10 @@ public class Endereço {
 	public String getBairro() {
 		return this.bairro;
 	}
-
+	
+	//Métodos set 
 	protected void setTipe(String tipo) {
-		this.tipe = tipo;
+		this.tipo = tipo;
 	}
 
 
@@ -117,12 +118,12 @@ public class Endereço {
 	}
 
 
-
-	@Override
-	public String toString() {
-		return "Endereço [id:" + id + ", tipe:" + tipe + ", tipoDeLogradouro:" + tipoDeLogradouro + ", logradouro:"
-				+ logradouro + ", numero:" + numero + ", bairro:" + bairro + ", cidade:" + cidade + ", estado:" + estado
-				+ ", cep:" + cep + "]";
+	
+	//Método toString
+		public String toString() {
+		return "\n Id: " + id + "\n Tipo: " + tipo + "\n Tipo de Logradouro: " + tipoDeLogradouro + "\n Logradouro: "
+				+ logradouro + ", Número: " + numero + ", Bairro: " + bairro + "\n Cidade: " + cidade + "\n Estado: " + estado
+				+ "\n Cep: " + cep;
 	}
 
 

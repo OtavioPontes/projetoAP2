@@ -1,16 +1,26 @@
+package projeto;
 
 public abstract class Pessoa {
 
+	
 	//Atributos
 	protected static int geraid = 0 ;
 	protected String id;
 	protected String nome;
-	private Endereço endereço;
-
-	//Método de incremento do ID
-	protected abstract String gerarID();
+	protected Endereço endereço;
 	
-	//Métodos que retornam dados
+	//Construtor
+	public Pessoa(String nome,Endereço endereço){
+		this.id =Integer.toString(geraid);
+		this.nome = nome;
+		this.endereço = endereço;
+		geraid++;
+	}
+
+	//Método abstrato
+	abstract String gerarId() ;
+	
+	//Métodos get
 	public String getNome() {
 		return this.nome;
 	}
@@ -18,14 +28,14 @@ public abstract class Pessoa {
 		return this.id;
 	}
 
-	//Método para setar endereço
+	//Método set
 	private void setEndereço(Endereço endereço) {
 		this.endereço = endereço;
 	}
 
-	//Método que gera a String descritiva do objeto
-	public String toString() {
-		return "Pessoa [Nome: " + nome + ", ID: " + id + ", Endereço: " + endereço + "]";
-	}
 	
+	public String toString(){
+		return "Id: "+this.id+"\nNome: "+this.nome+"\nEndereço: "+this.endereço+"\n";
+	}
+
 }
