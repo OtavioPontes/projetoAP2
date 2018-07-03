@@ -78,6 +78,7 @@ public class CadastroFuncionarioGUI {
 	 */
 	private void criaLayout() {
 		frameCadastroFuncionario = new JFrame();
+		frameCadastroFuncionario.setResizable(false);
 		frameCadastroFuncionario.setTitle("Funcionário");
 		frameCadastroFuncionario.setBounds(100, 100, 330, 311);
 		frameCadastroFuncionario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

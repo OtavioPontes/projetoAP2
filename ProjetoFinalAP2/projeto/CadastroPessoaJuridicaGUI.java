@@ -59,6 +59,7 @@ public class CadastroPessoaJuridicaGUI {
 	 */
 	private void criaLayout() {
 		frameCadastroPJ = new JFrame();
+		frameCadastroPJ.setResizable(false);
 		frameCadastroPJ.setTitle("Pessoa Jurídica");
 		frameCadastroPJ.setBounds(100, 100, 335, 233);
 		frameCadastroPJ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -59,6 +59,7 @@ public class CadastroEnderecoGUI {
 	private void criaLayout() {
 				
 		frameCadastroEndereco = new JFrame();
+		frameCadastroEndereco.setResizable(false);
 		frameCadastroEndereco.setTitle("Endereço");
 		frameCadastroEndereco.setBounds(100, 100, 365, 326);
 		frameCadastroEndereco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

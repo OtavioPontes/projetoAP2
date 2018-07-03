@@ -68,6 +68,7 @@ public class CadastroPessoaFisicaGUI {
 	 */
 	private void criaLayout() {
 		frameCadastroPF = new JFrame();
+		frameCadastroPF.setResizable(false);
 		frameCadastroPF.setTitle("Pessoa Física");
 		frameCadastroPF.setBounds(100, 100, 335, 233);
 		frameCadastroPF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
