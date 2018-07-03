@@ -1,27 +1,35 @@
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class ContaCorrente extends Conta{
     
-    //atributos
+    
+
+	//atributos
     private double limite;
     private Poupanca contaPoupanca;
     
-    //criação do scanner
-    Scanner input = new Scanner(System.in);
+    //Construtor de ContaCorrente, que aciona o construtor de Conta
+    public ContaCorrente(Pessoa cliente, double limite) {
+		super(cliente);
+		this.limite = limite;
+	}
     
-    //Sobrescrição do metodo saque
+    
+    //Sobrescrita do metodo saque
     @Override
     public void saque(double valor) {
         while (true){
             try{
-                if (valor>(getSaldo()+limite)){
+                if (valor>(getSaldo() + limite)){
                     throw new ContaException();
                 }
                 break;                
             }
             catch(ContaException e){
-                System.out.println("Seu limite é insuficiente, por favor entre com um novo valor:");
-                valor = input.nextDouble();             
+            	JOptionPane.showMessageDialog(null, "Saldo insuficiente.");
+                e.printStackTrace();;             
             }
         }
     }

@@ -6,16 +6,17 @@ public abstract class Conta{
     private double saldo = 0;
     private Pessoa cliente;
 
-    //Metodos construtores
-    public Conta(int numero, Pessoa cliente) {
-        this.numero = numero;
+    
+    
+    //Metodo construtor, implementado para facilitar utilização dos construtores das subclasses
+    public Conta(Pessoa cliente) {
+    	numero = geraNumero;
+    	geraNumero++;
         this.cliente = cliente;
-        geraNumero++;
     }
 
-    public Conta() {
-        geraNumero++;
-    }
+    
+    
     
     //metodo que retorna o numero gerado no construtor
     protected static int geraNumero(){

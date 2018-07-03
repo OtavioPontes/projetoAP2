@@ -1,11 +1,15 @@
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Poupanca extends Conta{
-    Scanner input = new Scanner (System.in);
+   
     
-    public void Poupanca(Pessoa cliente){
-    
-    }
+	public Poupanca(Pessoa cliente) {
+		super(cliente);
+		
+	}
+   
 
     @Override
     public void saque(double valor) {
@@ -17,8 +21,8 @@ public class Poupanca extends Conta{
                 break;
             }
             catch(ContaCorrente.ContaException e){
-                System.out.println("Seu limite é insuficiente, por favor entre com um novo valor:");
-                valor = input.nextDouble();                
+            	JOptionPane.showMessageDialog(null, "Saldo insuficiente.");
+                e.printStackTrace();           
             }
         }
     }
