@@ -29,7 +29,7 @@ public class Poupanca extends Conta{
 
     @Override
     public String getTipo() {
-        return null;
+        return "Poupança";
     }
     
 }
