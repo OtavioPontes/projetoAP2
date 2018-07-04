@@ -1,4 +1,4 @@
-package projeto;
+import javax.swing.JOptionPane;
 
 public class PessoaFisica extends Pessoa{
 
@@ -7,25 +7,16 @@ public class PessoaFisica extends Pessoa{
 	private String cpf;
 	
 	//Construtor
-	public PessoaFisica (String nome, Endereço endereço, String cpf) {
+	public PessoaFisica (String nome, Endereço endereço, String cpf) throws PessoaException{
 		super(nome, endereço);
 		this.id = Integer.toString(geraid);
 		
-		/*if(validaCPF()==true){
+		if(validaCPF(cpf)) {
 			this.cpf = cpf;
+		} else {
+			throw new PessoaException();
 		}
-		else{
-			while(validaCPF()==false){
-				try {
-					throw new PessoaException();
-				} catch (PessoaException e) {
-					System.out.println("O CPF digitado é inválido, por favor entre com um válido");
-					
-					e.printStackTrace();
-				}
-			}
-		}*/
-		this.cpf=cpf;
+		
 		geraid++;
 	}
 
@@ -36,7 +27,7 @@ public class PessoaFisica extends Pessoa{
 	}
 	
 	//Método validaCpf
-	private boolean validaCPF() {
+	private boolean validaCPF(String cpf) {
 		
 		int soma1=0, resto1=0, soma2=0, resto2=0;
 		int num[] = new int[9];
@@ -72,7 +63,7 @@ public class PessoaFisica extends Pessoa{
 		resto2 = (soma2*10) % 11;
 		
 		for(int i=0; i<2; i++) {
-			verif[i] = Integer.parseInt(String.valueOf(cpf.charAt(i+9)));
+				verif[i] = Integer.parseInt(String.valueOf(cpf.charAt(i+9)));
 		}
 		
 		if(resto1 == verif[0] && resto2 == verif[1] && teste == true) {
@@ -88,7 +79,16 @@ public class PessoaFisica extends Pessoa{
 	}
 	//Método toString
 	public String toString() {
-		return super.toString()+"Cpf: "+this.cpf+"\n";
+		return super.toString() + "Cpf: "+this.cpf+"\n";
+	}
+	
+	
+	
+	//Classe para Exceção de Pessoa
+	public class PessoaException extends Exception {
+		public PessoaException() {
+			
+		}
 	}
 
 	

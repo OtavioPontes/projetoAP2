@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import javax.swing.*;
 
+
 public class CadastroPessoaFisicaGUI {
 
 	private JFrame frameCadastroPF;
@@ -17,7 +18,7 @@ public class CadastroPessoaFisicaGUI {
 	private String cpf;
 	private Endereço end;
 	protected PessoaFisica pessoaFisica;
-	private CadastroEnderecoGUI enderecoCadastrado;
+	private CadastroEnderecoGUI enderecoCadastrado = null;
 
 
 	/**
@@ -186,20 +187,35 @@ public class CadastroPessoaFisicaGUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if(textFieldNome.getText().length() == 0 || textFieldCpf.getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "Campos em branco não são permitidos.");
-				} else {
+				} else 
+				if(enderecoCadastrado == null){
+					JOptionPane.showMessageDialog(null, "Por favor, adicione um endereço.");
+				} else
+					if(textFieldCpf.getText().length() != 11){
+						JOptionPane.showMessageDialog(null, "CPF inválido. Tente novamente, utilizando somente numeros.");
+					}
+					else {
 					nome = textFieldNome.getText();
-					textFieldNome.setText("");
 					cpf = textFieldCpf.getText();
-					textFieldCpf.setText("");
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
-					frameCadastroPF.setVisible(false);
 					end = enderecoCadastrado.getEnderecoFinal();
 					
-					//criação do objeto do tipo PessoaFisica
-					pessoaFisica = new PessoaFisica(nome, end, cpf);
+					//Tentativa de criar o objeto do tipo PessoaFísica, somente se o cpf for validado
+					try {
+						pessoaFisica = new PessoaFisica(nome, end, cpf);
+						JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+						
+						textFieldNome.setText("");
+						textFieldCpf.setText("");
+						frameCadastroPF.setVisible(false);
+					} 
+					catch(Exception e1) {
+						JOptionPane.showMessageDialog(null, "CPF invalido. Tente novamente, utilizando somente números.");
+					}
+					
+					
+					
 				}
 			}
 		});
@@ -211,7 +227,6 @@ public class CadastroPessoaFisicaGUI {
 		try {
 			end = endereco;
 		}catch (NullPointerException e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		

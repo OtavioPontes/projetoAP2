@@ -14,6 +14,9 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -30,7 +33,7 @@ public class CadastroFuncionarioGUI {
 	private String cpf;
 	private String cargo;
 	private Endereço end;
-	private CadastroEnderecoGUI cadastroEnd;
+	private CadastroEnderecoGUI cadastroEnd = null;
 	
 	
 	/**
@@ -170,24 +173,36 @@ public class CadastroFuncionarioGUI {
 				
 				if(textFieldNome.getText().length() == 0 || textFieldCpf.getText().length() == 0 || textFieldCargo.getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "Campos em branco não são permitidos.");
-				} else {
+				} else
+				if(cadastroEnd == null){
+					JOptionPane.showMessageDialog(null, "Por favor, adicione um endereço.");
+				} else
+					if(textFieldCpf.getText().length() != 11) {
+						JOptionPane.showMessageDialog(null, "O CPF deve ter 11 dígitos. Utilize somente números.");
+					}
+				
+				else {
 					nome = textFieldNome.getText();
-					textFieldNome.setText("");
 					cpf = textFieldCpf.getText();
-					textFieldCpf.setText("");
 					cargo = textFieldCargo.getText();
-					textFieldCargo.setText("");
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
-					
 					try {
 						end = cadastroEnd.getEnderecoFinal();
 					}catch (NullPointerException e1) {
 						e1.printStackTrace();
 					}
-					frameCadastroFuncionario.setVisible(false);
 					
-					func = new Funcionario(nome, end, cpf, cargo);
-		
+					
+					//Tentativa de criar o objeto funcionário, se o cpf for validado
+					try {
+							func = new Funcionario(nome, end, cpf, cargo);
+							textFieldCargo.setText("");
+							textFieldCpf.setText("");
+							textFieldNome.setText("");
+							JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+							frameCadastroFuncionario.setVisible(false);
+						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null, "O CPF digitado é inválido. Tente novamente, ultilizando somente números.");
+						}
 				}
 			}
 			
