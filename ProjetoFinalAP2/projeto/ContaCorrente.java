@@ -37,7 +37,7 @@ public class ContaCorrente extends Conta{
     //sobrescrição do metodo getTipo
     @Override
     public String getTipo() {
-        return null;        
+        return "Conta Corrente";        
     }
 
     //metodo setLimite
