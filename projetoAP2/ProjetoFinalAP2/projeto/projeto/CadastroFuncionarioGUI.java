@@ -1,4 +1,3 @@
-package projeto;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -36,26 +35,8 @@ public class CadastroFuncionarioGUI {
 	private Endereço end;
 	private CadastroEnderecoGUI cadastroEnd = null;
 	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroFuncionarioGUI window = new CadastroFuncionarioGUI();
-					window.frameCadastroFuncionario.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
+	//Construtor Padrão
 	public CadastroFuncionarioGUI() {
 		//Código para deixar a aparencia semelhante ao SO usado
 		try {
@@ -75,11 +56,11 @@ public class CadastroFuncionarioGUI {
 		}
 		
 		criaLayout();
+		
+		frameCadastroFuncionario.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	//Coloca os componentes no frame
 	private void criaLayout() {
 		frameCadastroFuncionario = new JFrame();
 		frameCadastroFuncionario.setResizable(false);
@@ -196,10 +177,12 @@ public class CadastroFuncionarioGUI {
 					//Tentativa de criar o objeto funcionário, se o cpf for validado
 					try {
 							func = new Funcionario(nome, end, cpf, cargo);
+							JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+							JanelaPrincipalGUI.addFuncionario(func);
 							textFieldCargo.setText("");
 							textFieldCpf.setText("");
 							textFieldNome.setText("");
-							JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+							
 							frameCadastroFuncionario.setVisible(false);
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null, "O CPF digitado é inválido. Tente novamente, ultilizando somente números.");
@@ -210,4 +193,5 @@ public class CadastroFuncionarioGUI {
 		});
 		
 	}
+	
 }

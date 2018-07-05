@@ -1,5 +1,4 @@
-package projeto;
-import java.awt.EventQueue;
+
 
 import java.awt.*;
 import javax.swing.*;
@@ -14,31 +13,15 @@ public class CadastroContaGUI {
 
 	private JFrame frameCadastroConta;
 	private JTextField textFieldLimite;
+	private SelecionaClienteGUI selecionaCliente;
 	
 	//atributos para guardar as informações da GUI
 	private Conta contaFinal;
-	private Pessoa clienteFinal;
+	private Pessoa clienteFinal = null;
 	private double limite = 0;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroContaGUI window = new CadastroContaGUI();
-					window.frameCadastroConta.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
+	//Construtor padrão
 	public CadastroContaGUI() {
 		//Código para deixar a aparencia semelhante ao SO usado
 				try {
@@ -58,11 +41,11 @@ public class CadastroContaGUI {
 				}
 				
 		criaLayout();
+		//mostra a janela
+		frameCadastroConta.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	//Coloca os componentes no frame
 	private void criaLayout() {
 		frameCadastroConta = new JFrame();
 		frameCadastroConta.setResizable(false);
@@ -96,6 +79,7 @@ public class CadastroContaGUI {
 		 */
 		JRadioButton rBContaCorrente = new JRadioButton("Conta Corrente");
 		panelTipoDeConta.add(rBContaCorrente);
+		rBContaCorrente.setSelected(true);
 		
 		JRadioButton rBContaPoupanca = new JRadioButton("Conta Poupança");
 		panelTipoDeConta.add(rBContaPoupanca);
@@ -129,14 +113,21 @@ public class CadastroContaGUI {
 		JButton buttonAddCliente = new JButton("Adic. Cliente...");
 		buttonAddCliente.setBounds(155, 44, 105, 23);
 		panelDados.add(buttonAddCliente);
+		buttonAddCliente.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				selecionaCliente = new SelecionaClienteGUI();
+				
+			}
+		});
 		
 		
 		//Label do numero da conta, gerado na classe Conta
-		JLabel labelGeraNumero = new JLabel("Nº");
-		labelGeraNumero.setBounds(123, 11, 46, 14);
+		JLabel labelGeraNumero = new JLabel("Gerado automaticamente.");
+		labelGeraNumero.setBounds(123, 11, 137, 14);
 		panelDados.add(labelGeraNumero);
 		
-		labelGeraNumero.setText(Integer.toString(Conta.geraNumero));
 		
 		JPanel panelLimite = new JPanel();
 		panelLimite.setBounds(10, 156, 270, 26);
@@ -213,17 +204,42 @@ public class CadastroContaGUI {
 							
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								if(rBContaCorrente.isSelected()) {
-									try {
-										limite = Double.parseDouble(textFieldLimite.getText());
-									}catch (NumberFormatException e1) {
-										JOptionPane.showInputDialog(null, "Entrada de número inválida no campo Limite");
-										e1.printStackTrace();
+								try {
+									clienteFinal = selecionaCliente.getClienteFinal();
+									
+									if(textFieldLimite.getText().length() == 0 && rBContaCorrente.isSelected()) {
+										JOptionPane.showMessageDialog(frameCadastroConta, "O campo limite não pode estar vazio.");
+									} else
+										
+									if(rBContaCorrente.isSelected()) {
+										try {
+											limite = Double.parseDouble(textFieldLimite.getText());
+											contaFinal = new ContaCorrente(clienteFinal, limite);
+											JOptionPane.showMessageDialog(frameCadastroConta, "Conta cadastrada com sucesso.");
+											JanelaPrincipalGUI.addConta(contaFinal);
+											frameCadastroConta.setVisible(false);
+											
+										}catch (NumberFormatException e1) {
+											JOptionPane.showMessageDialog(frameCadastroConta, "Entrada de número inválida no campo Limite");
+											e1.printStackTrace();
+										}
+										
+									} else 
+									    if(rBContaPoupanca.isSelected()){
+									    	contaFinal = new Poupanca(clienteFinal);
+									    	JOptionPane.showMessageDialog(frameCadastroConta, "Conta cadastrada com sucesso.");
+									    	
+									    	JanelaPrincipalGUI.addConta(contaFinal);
+									    	frameCadastroConta.setVisible(false);
+									    	
 									}
-									contaFinal = new ContaCorrente(clienteFinal, limite);
+								} catch (NullPointerException e1) {
+									JOptionPane.showMessageDialog(frameCadastroConta, "Por favor, adicione um cliente para associar à conta.");
 								}
+									
+								
 							}
 						});
-		
-	}
+					}
+
 }

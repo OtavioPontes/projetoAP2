@@ -1,4 +1,3 @@
-package projeto;
 public abstract class Conta{
     
     //Atributos
@@ -15,10 +14,13 @@ public abstract class Conta{
     	geraNumero++;
         this.cliente = cliente;
     }
+
+    
+    
     
     //metodo que retorna o numero gerado no construtor
-    protected int geraNumero(){
-        return numero;        
+    protected static int geraNumero(){
+        return geraNumero;        
     }
 
     //Metodo que retorna o saldo

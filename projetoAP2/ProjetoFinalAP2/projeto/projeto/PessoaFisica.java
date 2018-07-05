@@ -1,4 +1,3 @@
-package projeto;
 import javax.swing.JOptionPane;
 
 public class PessoaFisica extends Pessoa{
@@ -23,8 +22,8 @@ public class PessoaFisica extends Pessoa{
 
 	//Método gerarId
 	protected String gerarId() {
-		geraid++;
-		return "Int " + geraid;
+		
+		return null;
 	}
 	
 	//Método validaCpf
@@ -74,16 +73,16 @@ public class PessoaFisica extends Pessoa{
 			return false;
 		}
 	}
-	
 	//Método getCPF
 	public String getCPF() {
 		return this.cpf;
 	}
-	
 	//Método toString
 	public String toString() {
-		return "PessoaFisica [Nome: " + nome + ", ID: " + id + ", Endereço: " + ", CPF: " + cpf + "]";
+		return super.toString() + "Cpf: "+this.cpf+"\n";
 	}
+	
+	
 	
 	//Classe para Exceção de Pessoa
 	public class PessoaException extends Exception {
@@ -91,4 +90,7 @@ public class PessoaFisica extends Pessoa{
 			
 		}
 	}
+
+	
+	
 }

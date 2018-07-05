@@ -1,5 +1,3 @@
-package projeto;
-
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -31,7 +29,7 @@ public class Poupanca extends Conta{
 
     @Override
     public String getTipo() {
-        return "Poupança";
+        return null;
     }
     
 }

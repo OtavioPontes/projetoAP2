@@ -1,7 +1,8 @@
-package projeto;
+
 
 public abstract class Pessoa {
 
+	
 	//Atributos
 	protected static int geraid = 0 ;
 	protected String id;
@@ -10,14 +11,14 @@ public abstract class Pessoa {
 	
 	//Construtor
 	public Pessoa(String nome,Endereço endereço){
-		this.id = Integer.toString(geraid);
+		this.id =Integer.toString(geraid);
 		this.nome = nome;
 		this.endereço = endereço;
 		geraid++;
 	}
 
-	//Método abestrato para gerar a Id
-	protected abstract String gerarId() ;
+	//Método abstrato
+	abstract String gerarId() ;
 	
 	//Métodos get
 	public String getNome() {
@@ -32,7 +33,7 @@ public abstract class Pessoa {
 		this.endereço = endereço;
 	}
 
-	//Método toString
+	
 	public String toString(){
 		return "Id: "+this.id+"\nNome: "+this.nome+"\nEndereço: "+this.endereço+"\n";
 	}

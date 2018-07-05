@@ -1,4 +1,3 @@
-package projeto;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -38,7 +37,7 @@ public class ContaCorrente extends Conta{
     //sobrescrição do metodo getTipo
     @Override
     public String getTipo() {
-        return "Conta Corrente";        
+        return null;        
     }
 
     //metodo setLimite

@@ -1,4 +1,4 @@
-package projeto;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
@@ -27,9 +27,7 @@ public class CadastroEnderecoGUI {
 	
 	
 
-	/**
-	 * Create the application.
-	 */
+	//Construtor Padrão
 	public CadastroEnderecoGUI() {
 		//Código para deixar a aparencia semelhante ao SO usado
 		try {

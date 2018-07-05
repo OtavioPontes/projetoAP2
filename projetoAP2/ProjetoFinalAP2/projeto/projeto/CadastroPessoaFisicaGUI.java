@@ -1,4 +1,3 @@
-package projeto;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +8,7 @@ import javax.swing.*;
 
 public class CadastroPessoaFisicaGUI {
 
-	private JFrame frameCadastroPF;
+	protected JFrame frameCadastroPF;
 	private JTextField textFieldNome;
 	private JTextField textFieldCpf;
 	
@@ -18,30 +17,12 @@ public class CadastroPessoaFisicaGUI {
 	private String nome;
 	private String cpf;
 	private Endereço end;
-	protected PessoaFisica pessoaFisica;
+	private PessoaFisica pessoaFisica;
 	private CadastroEnderecoGUI enderecoCadastrado = null;
 
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CadastroPessoaFisicaGUI window = new CadastroPessoaFisicaGUI();
-					window.frameCadastroPF.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	
-	/**
-	 * Create the application.
-	 */
+	//Construtor padrão
 	public CadastroPessoaFisicaGUI() {
 		
 		//Código para deixar a aparencia semelhante ao SO usado
@@ -62,12 +43,11 @@ public class CadastroPessoaFisicaGUI {
 				}
 				
 		criaLayout();
-		
+		//torna a janela visível
+		frameCadastroPF.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	//Coloca os componentes no frame
 	private void criaLayout() {
 		frameCadastroPF = new JFrame();
 		frameCadastroPF.setResizable(false);
@@ -189,13 +169,13 @@ public class CadastroPessoaFisicaGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(textFieldNome.getText().length() == 0 || textFieldCpf.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "Campos em branco não são permitidos.");
+					JOptionPane.showMessageDialog(frameCadastroPF, "Campos em branco não são permitidos.");
 				} else 
 				if(enderecoCadastrado == null){
-					JOptionPane.showMessageDialog(null, "Por favor, adicione um endereço.");
+					JOptionPane.showMessageDialog(frameCadastroPF, "Por favor, adicione um endereço.");
 				} else
 					if(textFieldCpf.getText().length() != 11){
-						JOptionPane.showMessageDialog(null, "CPF inválido. Tente novamente, utilizando somente numeros.");
+						JOptionPane.showMessageDialog(frameCadastroPF, "CPF inválido. Tente novamente, utilizando somente numeros.");
 					}
 					else {
 					nome = textFieldNome.getText();
@@ -205,14 +185,15 @@ public class CadastroPessoaFisicaGUI {
 					//Tentativa de criar o objeto do tipo PessoaFísica, somente se o cpf for validado
 					try {
 						pessoaFisica = new PessoaFisica(nome, end, cpf);
-						JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+						JOptionPane.showMessageDialog(frameCadastroPF, "Cadastro realizado com sucesso");
+						JanelaPrincipalGUI.addPessoa(pessoaFisica);
 						
 						textFieldNome.setText("");
 						textFieldCpf.setText("");
 						frameCadastroPF.setVisible(false);
 					} 
 					catch(Exception e1) {
-						JOptionPane.showMessageDialog(null, "CPF invalido. Tente novamente, utilizando somente números.");
+						JOptionPane.showMessageDialog(frameCadastroPF, "CPF invalido. Tente novamente, utilizando somente números.");
 					}
 					
 					
@@ -232,5 +213,8 @@ public class CadastroPessoaFisicaGUI {
 		}
 		
 	}
+
+
+	
 	
 }
