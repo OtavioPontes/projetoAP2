@@ -1,6 +1,8 @@
+package projeto;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
 import java.awt.*;
 import javax.swing.*;
 
@@ -16,7 +18,8 @@ public class JanelaPrincipalGUI {
 	private CadastroFuncionarioGUI cadastroFuncionario;
 	private CadastroPessoaFisicaGUI cadastroFisica;
 	private CadastroPessoaJuridicaGUI cadastroJuridica;
-	
+	private CaixaEletronicoGUI caixaEletronico;
+	private Calendar c1 = Calendar.getInstance();
 	private JLabel labelHorario;
 	
 	private static List<Conta> contas = new ArrayList<Conta>();
@@ -88,10 +91,11 @@ public class JanelaPrincipalGUI {
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 252);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JLabel labelNomeBanco = new JLabel("BANCO FODA-SE");
+		frame.setResizable(false);
+		JLabel labelNomeBanco = new JLabel("Banco Los Santos");
 		labelNomeBanco.setBounds(0, 0, 434, 22);
 		labelNomeBanco.setFont(new Font("Tahoma", Font.BOLD, 18));
 		labelNomeBanco.setHorizontalAlignment(SwingConstants.CENTER);
@@ -107,7 +111,7 @@ public class JanelaPrincipalGUI {
 		panel.add(labelOpcoes);
 		
 		JLabel labelCadastro = new JLabel("Novo cadastro:");
-		labelCadastro.setBounds(22, 73, 79, 14);
+		labelCadastro.setBounds(22, 73, 100, 14);
 		frame.getContentPane().add(labelCadastro);
 		
 		JPanel panel_1 = new JPanel();
@@ -125,6 +129,11 @@ public class JanelaPrincipalGUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
+				if(c1.get(Calendar.HOUR_OF_DAY) < 10 || c1.get(Calendar.HOUR_OF_DAY)> 15){
+					JOptionPane.showMessageDialog(null, "O cadastro de contas só é possível das 10 às 15h");
+				}
+				else{
 				//verifica se há clientes cadastrados
 				if(pessoas.isEmpty()) {
 					JOptionPane.showMessageDialog(frame, "Não é possível cadastrar uma conta sem haver clientes cadastrados.");
@@ -133,7 +142,7 @@ public class JanelaPrincipalGUI {
 					cadastroConta = new CadastroContaGUI();
 				}
 				
-				
+				}
 			}
 		});
 		
@@ -171,7 +180,7 @@ public class JanelaPrincipalGUI {
 		});
 		
 		JLabel labelTransacao = new JLabel("Nova transação:");
-		labelTransacao.setBounds(22, 133, 86, 14);
+		labelTransacao.setBounds(22, 133, 100, 14);
 		frame.getContentPane().add(labelTransacao);
 		
 		JPanel panel_2 = new JPanel();
@@ -180,12 +189,31 @@ public class JanelaPrincipalGUI {
 		panel_2.setLayout(null);
 		
 		JButton buttonCaixaEletronico = new JButton("Caixa Eletrônico");
-		buttonCaixaEletronico.setBounds(22, 5, 109, 23);
+		buttonCaixaEletronico.setBounds(22, 5, 150, 23);
 		buttonCaixaEletronico.setHorizontalTextPosition(SwingConstants.LEFT);
 		panel_2.add(buttonCaixaEletronico);
+		buttonCaixaEletronico.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					
+					
+					if(c1.get(Calendar.HOUR_OF_DAY)< 7 || c1.get(Calendar.HOUR_OF_DAY)>22){
+						JOptionPane.showMessageDialog(null, "Só é possivel realizar transações das 7 às 22h");
+					}
+					else{
+						if(contas.isEmpty()){
+							JOptionPane.showMessageDialog(null, "Não é possivel realizar operações sem contas cadastradas");
+						}
+						else{
+						caixaEletronico = new CaixaEletronicoGUI();
+						}
+						}
+			}
+		});
 		
 		labelHorario = new JLabel("New label");
-		labelHorario.setBounds(356, 188, 46, 14);
+		labelHorario.setBounds(356, 188, 60, 14);
 		frame.getContentPane().add(labelHorario);
 	}
 	
