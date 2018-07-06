@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class JanelaPrincipalGUI {
@@ -15,6 +16,8 @@ public class JanelaPrincipalGUI {
 	private CadastroFuncionarioGUI cadastroFuncionario;
 	private CadastroPessoaFisicaGUI cadastroFisica;
 	private CadastroPessoaJuridicaGUI cadastroJuridica;
+	
+	private JLabel labelHorario;
 	
 	private static List<Conta> contas = new ArrayList<Conta>();
 	private static List<Pessoa> pessoas = new ArrayList<Pessoa>();
@@ -61,11 +64,27 @@ public class JanelaPrincipalGUI {
 		
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	//
 	private void criaLayout() {
 		
+		
+		//Timer responsável por atualizar o horário constantemente
+				Timer atualizaHorario = new Timer(10000, new ActionListener() {
+							
+					@Override
+						public void actionPerformed(ActionEvent e) {
+							Calendar horario = Calendar.getInstance();
+							String horas = "";
+							horas = (Integer.toString(horario.get(Calendar.HOUR_OF_DAY)) + "h" + Integer.toString(horario.get(Calendar.MINUTE)) + "min");
+							labelHorario.setText(horas);
+							
+								
+							}
+						});
+						atualizaHorario.setInitialDelay(100);
+						atualizaHorario.start();
+						
+						
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 252);
@@ -164,6 +183,10 @@ public class JanelaPrincipalGUI {
 		buttonCaixaEletronico.setBounds(22, 5, 109, 23);
 		buttonCaixaEletronico.setHorizontalTextPosition(SwingConstants.LEFT);
 		panel_2.add(buttonCaixaEletronico);
+		
+		labelHorario = new JLabel("New label");
+		labelHorario.setBounds(356, 188, 46, 14);
+		frame.getContentPane().add(labelHorario);
 	}
 	
 	public static void addPessoa(Pessoa pessoa) {
@@ -192,6 +215,4 @@ public class JanelaPrincipalGUI {
 	public static List<Funcionario> getFuncionarios() {
 		return funcionarios;
 	}
-
-	
 }
