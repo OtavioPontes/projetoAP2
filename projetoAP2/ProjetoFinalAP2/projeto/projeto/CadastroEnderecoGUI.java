@@ -254,7 +254,7 @@ public class CadastroEnderecoGUI {
 			estado = "Acre";
 		} else
 		
-		if(uf == "Al") {
+		if(uf == "AL") {
 				estado = "Alagoas";
 		} else
 		

@@ -12,13 +12,19 @@ public class CadastroContaGUI {
 	private JFrame frameCadastroConta;
 	private JTextField textFieldLimite;
 	private SelecionaClienteGUI selecionaCliente;
+	private static JLabel labelNomeCliente;
 	
 	//atributos para guardar as informações da GUI
 	private Conta contaFinal;
-	private Pessoa clienteFinal = null;
+	private static Pessoa clienteFinal = null;
 	private double limite = 0;
 
-
+	public static void atualizaCliente(Pessoa cliente) {
+		clienteFinal = cliente;
+		labelNomeCliente.setText(cliente.getNome());
+		
+	}
+	
 	//Construtor padrão
 	public CadastroContaGUI() {
 		//Código para deixar a aparencia semelhante ao SO usado
@@ -125,6 +131,14 @@ public class CadastroContaGUI {
 		JLabel labelGeraNumero = new JLabel("Gerado automaticamente.");
 		labelGeraNumero.setBounds(123, 11, 137, 14);
 		panelDados.add(labelGeraNumero);
+		
+		
+		//Label que mostra o nome do cliente
+		labelNomeCliente = new JLabel("New label");
+		labelNomeCliente.setBounds(63, 48, 46, 14);
+		panelDados.add(labelNomeCliente);
+		
+		
 		
 		
 		JPanel panelLimite = new JPanel();
@@ -239,5 +253,5 @@ public class CadastroContaGUI {
 							}
 						});
 					}
-
+	
 }

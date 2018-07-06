@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JSlider;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
@@ -57,14 +58,20 @@ public class SelecionaClienteGUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cliente = JanelaPrincipalGUI.getPessoas().get(listSelecaoCliente.getSelectedIndex());
-				frameSelecionaCliente.setVisible(false);				
+				if(listSelecaoCliente.getSelectedIndex() == -1) {
+					JOptionPane.showMessageDialog(frameSelecionaCliente, "Por favor, selecione um cliente.");
+				} else {
+					cliente = JanelaPrincipalGUI.getPessoas().get(listSelecaoCliente.getSelectedIndex());
+					frameSelecionaCliente.setVisible(false);
+					CadastroContaGUI.atualizaCliente(cliente);
+				}
+								
 			}
 		});
 		
 	}
 	
 	public Pessoa getClienteFinal() {
-		return cliente;
+		return cliente;	
 	}
 }
