@@ -1,5 +1,3 @@
-
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;

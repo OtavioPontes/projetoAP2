@@ -1,4 +1,3 @@
-
 public class Funcionario extends PessoaFisica {
 
 	private static int geraid = 0;

@@ -21,9 +21,10 @@ public class PessoaFisica extends Pessoa{
 	}
 
 	//Método gerarId
+	@Override
 	protected String gerarId() {
-		
-		return null;
+		geraid++;
+		return "Int " + geraid;
 	}
 	
 	//Método validaCpf

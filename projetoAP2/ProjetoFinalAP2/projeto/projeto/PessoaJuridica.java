@@ -1,5 +1,4 @@
 
-
 public class PessoaJuridica extends Pessoa{
 
 	//Atributos
@@ -22,8 +21,10 @@ public class PessoaJuridica extends Pessoa{
 	}
 	
 	//Método gerarId
+	@Override
 	protected String gerarId() {
-		return null;
+		geraid++;
+		return "Int " + geraid;
 	}
 	
 	//Método validaCNPJ

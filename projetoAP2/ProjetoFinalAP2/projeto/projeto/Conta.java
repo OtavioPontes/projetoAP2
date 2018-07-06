@@ -19,8 +19,8 @@ public abstract class Conta{
     
     
     //metodo que retorna o numero gerado no construtor
-    protected static int geraNumero(){
-        return geraNumero;        
+    protected int geraNumero(){
+        return numero;        
     }
 
     //Metodo que retorna o saldo
