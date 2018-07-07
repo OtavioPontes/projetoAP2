@@ -79,7 +79,12 @@ public class SaqueGUI {
 				if(caixaTexto.getText().length() == 0) {
 					JOptionPane.showMessageDialog(janela, "Nenhum valor foi sacado.");
 					janela.setVisible(false);
-				} else {
+				} else if(Double.parseDouble(caixaTexto.getText()) < 0){
+					JOptionPane.showMessageDialog(null, "Não é possível sacar valores negativos!");
+				}
+					
+				
+					else {
 					try {
 						double valor = Double.parseDouble(caixaTexto.getText());
 						JanelaPrincipalGUI.getContas().get(SelecionaContaGUI.getSelectedIndex()).saque(valor);

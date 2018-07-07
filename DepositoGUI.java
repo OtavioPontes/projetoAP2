@@ -87,10 +87,14 @@ public class DepositoGUI {
 				try {
 					deposito = caixaTexto.getText();
 					double valor = Double.parseDouble(deposito);
+					if(Double.parseDouble(caixaTexto.getText()) < 0){
+						JOptionPane.showMessageDialog(null, "Não é possível depositar valores negativos!");
+					}else{
 					JanelaPrincipalGUI.getContas().get(SelecionaContaGUI.getSelectedIndex()).deposito(valor);
 					janela.setVisible(false);
 					JOptionPane.showMessageDialog(null,"O valor foi depositado com sucesso");
-				} catch(NumberFormatException e1) {
+					}
+					} catch(NumberFormatException e1) {
 					JOptionPane.showMessageDialog(janela, "O valor depositado é inválido. Utilize pontos, e não virgulas.");
 				}
 				
