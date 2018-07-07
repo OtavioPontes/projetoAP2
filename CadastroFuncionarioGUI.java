@@ -81,7 +81,7 @@ public class CadastroFuncionarioGUI {
 		frameCadastroFuncionario.getContentPane().add(panelLableFuncionario);
 		
 		//Label para o título do cabeçalho
-		JLabel labelFuncionario = new JLabel("Cadastro de Funconário:");
+		JLabel labelFuncionario = new JLabel("Cadastro de Funcionário:");
 		panelLableFuncionario.add(labelFuncionario);
 		
 		
