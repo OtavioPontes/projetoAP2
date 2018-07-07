@@ -1,4 +1,3 @@
-package projeto;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -22,7 +21,6 @@ public class DepositoGUI {
 	private  JTextField caixaTexto;
 	private  JLabel textoBanco,tagDeposito;
 	private  JButton botaoDeposito;
-	private Conta conta;
 	private String deposito;
 	
 	public DepositoGUI() {
@@ -51,6 +49,7 @@ public class DepositoGUI {
 		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		janela.getContentPane().setLayout(g1);
 		janela.setBounds(100, 100, 550, 252);
+		janela.setLocationRelativeTo(null);
 		
 		painel = new JPanel();
 		painelCabeçalho = new JPanel();
@@ -83,10 +82,19 @@ public class DepositoGUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				deposito = caixaTexto.getText();
-				conta.deposito(Double.parseDouble(deposito));
+				try {
+					deposito = caixaTexto.getText();
+					double valor = Double.parseDouble(deposito);
+					JanelaPrincipalGUI.getContas().get(SelecionaContaGUI.getSelectedIndex()).deposito(valor);
+					janela.setVisible(false);
+					JOptionPane.showMessageDialog(null,"O valor foi depositado com sucesso");
+				} catch(NumberFormatException e1) {
+					JOptionPane.showMessageDialog(janela, "O valor depositado é inválido. Utilize pontos, e não virgulas.");
+				}
 				
-				JOptionPane.showMessageDialog(null,"O valor foi depositado com sucesso");
+				
+				
+				
 			}
 		});
 	

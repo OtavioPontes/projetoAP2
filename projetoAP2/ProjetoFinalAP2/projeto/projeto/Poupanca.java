@@ -12,18 +12,12 @@ public class Poupanca extends Conta{
    
 
     @Override
-    public void saque(double valor) {
-        while (true){
-            try{
-                if (valor>getSaldo()){
-                    throw new ContaCorrente.ContaException();
-                }
-                break;
-            }
-            catch(ContaCorrente.ContaException e){
-            	JOptionPane.showMessageDialog(null, "Saldo insuficiente.");
-                e.printStackTrace();           
-            }
+    public void saque(double valor) throws ContaException {
+        if (valor > getSaldo()){
+                 throw new ContaException();
+           }
+        else {
+        	super.saque(valor);
         }
     }
 

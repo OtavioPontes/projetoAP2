@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+
+
 public class ContaCorrente extends Conta{
     
     
@@ -19,19 +21,14 @@ public class ContaCorrente extends Conta{
     
     //Sobrescrita do metodo saque
     @Override
-    public void saque(double valor) {
-        while (true){
-            try{
-                if (valor>(getSaldo() + limite)){
-                    throw new ContaException();
-                }
-                break;                
-            }
-            catch(ContaException e){
-            	JOptionPane.showMessageDialog(null, "Saldo insuficiente.");
-                e.printStackTrace();;             
-            }
-        }
+    public void saque(double valor) throws ContaException{
+       
+         if (valor>(getSaldo() + limite)){
+                 throw new ContaException();
+             }
+         else {
+        	 super.saque(valor);
+         }
     }
 
     //sobrescrição do metodo getTipo
@@ -50,11 +47,6 @@ public class ContaCorrente extends Conta{
         return limite;
     }
 
-    //criação da exceção personalizada ContaException
-    public static class ContaException extends Exception {
-
-        public ContaException() {
-        }
-    }
+    
     
 }

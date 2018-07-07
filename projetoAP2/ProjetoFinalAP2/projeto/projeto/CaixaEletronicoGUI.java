@@ -1,5 +1,3 @@
-package projeto;
-
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -30,11 +28,28 @@ public class CaixaEletronicoGUI {
 	private JLabel labelHorario;
 	private SaqueGUI saqueGUI;
 	private DepositoGUI depositoGUI;
-	private CadastroContaGUI c1;
+	private Conta conta = JanelaPrincipalGUI.getContas().get(SelecionaContaGUI.getSelectedIndex());
 	
 	//Construtor
 	public CaixaEletronicoGUI() {
 		
+		//Timer responsável por atualizar o horário constantemente
+		Timer atualizaHorario = new Timer(10000, new ActionListener() {
+					
+			@Override
+				public void actionPerformed(ActionEvent e) {
+					Calendar horario = Calendar.getInstance();
+					String horas = "";
+					horas = (Integer.toString(horario.get(Calendar.HOUR_OF_DAY)) + "h" + Integer.toString(horario.get(Calendar.MINUTE)) + "min");
+					labelHorario.setText(horas);
+					
+						
+					}
+				});
+				atualizaHorario.setInitialDelay(100);
+				atualizaHorario.start();
+				
+				
 		//Método para deixar janela parecida com o SO
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -51,12 +66,9 @@ public class CaixaEletronicoGUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			
-			criaLayout();
 		
+		criaLayout();
 		
-				atualizaHorario.setInitialDelay(100);
-				atualizaHorario.start();
 	}
 	
 	//Cria o layout
@@ -68,7 +80,7 @@ public class CaixaEletronicoGUI {
 		botaoDeposito = new JButton("Depósito");
 		botaoSaldo = new JButton("Saldo");
 		textoBanco = new JLabel("Banco de Los Santos");
-		textoAgencia = new JLabel("Número da Conta: " + Conta.geraNumero);
+		textoAgencia = new JLabel("Número da Conta: " + conta.geraNumero());
 		painelCabeçalho = new JPanel();
 		painelSup1 = new JPanel();
 		painelSup2 = new JPanel();
@@ -101,7 +113,7 @@ public class CaixaEletronicoGUI {
 		janelaCaixa.add(painelSup1, BorderLayout.EAST);
 		janelaCaixa.add(painelSup2, BorderLayout.WEST);
 		janelaCaixa.add(painelSup3, BorderLayout.SOUTH);
-		janelaCaixa.add(painel,BorderLayout.CENTER);
+		janelaCaixa.add(painel, BorderLayout.CENTER);
 		
 		janelaCaixa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		janelaCaixa.setVisible(true);
@@ -116,6 +128,8 @@ public class CaixaEletronicoGUI {
 				
 			}
 		});
+		
+		
 		//clique em deposito
 		botaoDeposito.addActionListener(new ActionListener() {
 			
@@ -126,34 +140,24 @@ public class CaixaEletronicoGUI {
 				
 			}
 		});
+		
+		
 		//clique em saldo
 		botaoSaldo.addActionListener(new ActionListener() {
 			
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				JOptionPane.showMessageDialog(null, "O seu Saldo é: " + c1.contaFinal.getSaldo());
-				
+				double saldo = conta.getSaldo();
+				JOptionPane.showMessageDialog(janelaCaixa, "Seu saldo é de R$" + saldo + ".");
 			}
 		});
 	
 	
 	}
-	//Método para atualizar o horário
-	Timer atualizaHorario = new Timer(1000, new ActionListener() {
 	
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			Calendar horario = Calendar.getInstance();
-			String horas = "";
-			horas = (Integer.toString(horario.get(Calendar.HOUR_OF_DAY)) + "h" + Integer.toString(horario.get(Calendar.MINUTE)) + "min");
-			labelHorario.setText(horas);
-			
-				
-			}
-	});
 
 	
+
 
 }

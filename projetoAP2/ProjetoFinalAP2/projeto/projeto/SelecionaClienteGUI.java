@@ -31,8 +31,9 @@ public class SelecionaClienteGUI {
 		frameSelecionaCliente = new JFrame();
 		frameSelecionaCliente.setTitle("Cliente");
 		frameSelecionaCliente.setBounds(100, 100, 400, 315);
-		frameSelecionaCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameSelecionaCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameSelecionaCliente.getContentPane().setLayout(null);
+		frameSelecionaCliente.setLocationRelativeTo(null);
 		
 		//métodos para criar array com nome dos clientes cadastrados
 		nomePessoas = new String[JanelaPrincipalGUI.getPessoas().size()];

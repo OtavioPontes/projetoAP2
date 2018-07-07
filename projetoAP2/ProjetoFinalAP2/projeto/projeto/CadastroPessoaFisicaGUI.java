@@ -53,8 +53,9 @@ public class CadastroPessoaFisicaGUI {
 		frameCadastroPF.setResizable(false);
 		frameCadastroPF.setTitle("Pessoa Física");
 		frameCadastroPF.setBounds(100, 100, 335, 233);
-		frameCadastroPF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameCadastroPF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameCadastroPF.getContentPane().setLayout(null);
+		frameCadastroPF.setLocationRelativeTo(null);
 		
 		
 		//Panel para o label principal

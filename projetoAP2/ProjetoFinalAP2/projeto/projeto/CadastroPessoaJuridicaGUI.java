@@ -48,8 +48,9 @@ public class CadastroPessoaJuridicaGUI {
 		frameCadastroPJ.setResizable(false);
 		frameCadastroPJ.setTitle("Pessoa Jurídica");
 		frameCadastroPJ.setBounds(100, 100, 335, 233);
-		frameCadastroPJ.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameCadastroPJ.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameCadastroPJ.getContentPane().setLayout(null);
+		frameCadastroPJ.setLocationRelativeTo(null);
 		
 		
 		//Panel para o label principal

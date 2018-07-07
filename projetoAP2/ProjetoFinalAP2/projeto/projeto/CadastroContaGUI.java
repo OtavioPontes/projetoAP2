@@ -19,6 +19,10 @@ public class CadastroContaGUI {
 	private static Pessoa clienteFinal = null;
 	private double limite = 0;
 
+	public Conta getContaFinal() {
+		return contaFinal;
+	}
+
 	public static void atualizaCliente(Pessoa cliente) {
 		clienteFinal = cliente;
 		labelNomeCliente.setText(cliente.getNome());
@@ -55,7 +59,7 @@ public class CadastroContaGUI {
 		frameCadastroConta.setResizable(false);
 		frameCadastroConta.setTitle("Conta");
 		frameCadastroConta.setBounds(100, 100, 355, 275);
-		frameCadastroConta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameCadastroConta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameCadastroConta.getContentPane().setLayout(null);
 		
 		JPanel panelLabelPrincipal = new JPanel();
@@ -115,7 +119,7 @@ public class CadastroContaGUI {
 		
 		//Botão para adição de um cliente
 		JButton buttonAddCliente = new JButton("Adic. Cliente...");
-		buttonAddCliente.setBounds(155, 44, 105, 23);
+		buttonAddCliente.setBounds(165, 44, 105, 23);
 		panelDados.add(buttonAddCliente);
 		buttonAddCliente.addActionListener(new ActionListener() {
 			
@@ -134,8 +138,8 @@ public class CadastroContaGUI {
 		
 		
 		//Label que mostra o nome do cliente
-		labelNomeCliente = new JLabel("New label");
-		labelNomeCliente.setBounds(63, 48, 46, 14);
+		labelNomeCliente = new JLabel("");
+		labelNomeCliente.setBounds(54, 48, 105, 14);
 		panelDados.add(labelNomeCliente);
 		
 		
@@ -145,6 +149,7 @@ public class CadastroContaGUI {
 		panelLimite.setBounds(10, 156, 270, 26);
 		frameCadastroConta.getContentPane().add(panelLimite);
 		panelLimite.setLayout(null);
+		frameCadastroConta.setLocationRelativeTo(null);
 		
 		JLabel labelLimite = new JLabel("Limite: ");
 		labelLimite.setBounds(10, 8, 34, 14);

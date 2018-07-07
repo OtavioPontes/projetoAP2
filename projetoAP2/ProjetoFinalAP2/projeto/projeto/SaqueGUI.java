@@ -1,10 +1,12 @@
-package projeto;
+
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -13,7 +15,7 @@ public class SaqueGUI {
 	private  JFrame janela;
 	private  JPanel painel,painelCabeçalho;
 	private  JTextField caixaTexto;
-	private  JLabel textoSaque,textoBanco,tagSaque;
+	private  JLabel textoSaque, textoBanco, tagSaque;
 	private  final JButton botaoSacar = new JButton("Sacar");
 	
 	
@@ -43,6 +45,7 @@ public class SaqueGUI {
 		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		janela.getContentPane().setLayout(g1);
 		janela.setBounds(100, 100, 550, 252);
+		janela.setLocationRelativeTo(null);
 		
 		painel = new JPanel();
 		painelCabeçalho = new JPanel();
@@ -68,6 +71,30 @@ public class SaqueGUI {
 		janela.getContentPane().add(painel,BorderLayout.CENTER);
 		botaoSacar.setBounds(212, 71, 120, 31);
 		painel.add(botaoSacar);
+		botaoSacar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(caixaTexto.getText().length() == 0) {
+					JOptionPane.showMessageDialog(janela, "Nenhum valor foi sacado.");
+					janela.setVisible(false);
+				} else {
+					try {
+						double valor = Double.parseDouble(caixaTexto.getText());
+						JanelaPrincipalGUI.getContas().get(SelecionaContaGUI.getSelectedIndex()).saque(valor);
+						janela.setVisible(false);
+						JOptionPane.showMessageDialog(janela, "O saque foi realizado.");	
+					} catch(NumberFormatException e1) {
+						JOptionPane.showMessageDialog(janela, "Valor de saque inválido.");
+					} catch (ContaException e1) {
+						JOptionPane.showMessageDialog(janela, "Saldo insuficiente.");
+						e1.printStackTrace();
+					}
+					
+				}
+			}
+		});
 		
 		janela.setVisible(true);
 	}

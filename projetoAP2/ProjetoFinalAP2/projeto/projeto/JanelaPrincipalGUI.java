@@ -1,4 +1,4 @@
-package projeto;
+
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +19,7 @@ public class JanelaPrincipalGUI {
 	private CadastroPessoaFisicaGUI cadastroFisica;
 	private CadastroPessoaJuridicaGUI cadastroJuridica;
 	private CaixaEletronicoGUI caixaEletronico;
+	private SelecionaContaGUI selecionarConta;
 	private Calendar c1 = Calendar.getInstance();
 	private JLabel labelHorario;
 	
@@ -133,7 +134,7 @@ public class JanelaPrincipalGUI {
 				if(c1.get(Calendar.HOUR_OF_DAY) < 10 || c1.get(Calendar.HOUR_OF_DAY)> 15){
 					JOptionPane.showMessageDialog(null, "O cadastro de contas só é possível das 10 às 15h");
 				}
-				else{
+				else
 				//verifica se há clientes cadastrados
 				if(pessoas.isEmpty()) {
 					JOptionPane.showMessageDialog(frame, "Não é possível cadastrar uma conta sem haver clientes cadastrados.");
@@ -143,7 +144,6 @@ public class JanelaPrincipalGUI {
 				}
 				
 				}
-			}
 		});
 		
 		JButton ButtonCadastroPessoaFisica = new JButton("Pessoa Física");
@@ -184,7 +184,7 @@ public class JanelaPrincipalGUI {
 		frame.getContentPane().add(labelTransacao);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 155, 170, 36);
+		panel_2.setBounds(10, 155, 329, 36);
 		frame.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -199,20 +199,20 @@ public class JanelaPrincipalGUI {
 					
 					
 					if(c1.get(Calendar.HOUR_OF_DAY)< 7 || c1.get(Calendar.HOUR_OF_DAY)>22){
-						JOptionPane.showMessageDialog(null, "Só é possivel realizar transações das 7 às 22h");
+						JOptionPane.showMessageDialog(null, "Só é possivel realizar transações das 7h às 22h");
 					}
-					else{
+					else
 						if(contas.isEmpty()){
 							JOptionPane.showMessageDialog(null, "Não é possivel realizar operações sem contas cadastradas");
 						}
 						else{
-						caixaEletronico = new CaixaEletronicoGUI();
+							selecionarConta = new SelecionaContaGUI();
 						}
-						}
+						
 			}
 		});
 		
-		labelHorario = new JLabel("New label");
+		labelHorario = new JLabel("Horário");
 		labelHorario.setBounds(356, 188, 60, 14);
 		frame.getContentPane().add(labelHorario);
 	}

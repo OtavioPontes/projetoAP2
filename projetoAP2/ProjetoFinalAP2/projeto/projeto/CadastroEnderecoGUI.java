@@ -59,8 +59,9 @@ public class CadastroEnderecoGUI {
 		frameCadastroEndereco.setResizable(false);
 		frameCadastroEndereco.setTitle("Endereço");
 		frameCadastroEndereco.setBounds(100, 100, 365, 326);
-		frameCadastroEndereco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameCadastroEndereco.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameCadastroEndereco.getContentPane().setLayout(null);
+		frameCadastroEndereco.setLocationRelativeTo(null);
 		
 		//Panel para o Label do nome principal
 		JPanel panelLabelPrincipal = new JPanel();

@@ -66,8 +66,9 @@ public class CadastroFuncionarioGUI {
 		frameCadastroFuncionario.setResizable(false);
 		frameCadastroFuncionario.setTitle("Funcionário");
 		frameCadastroFuncionario.setBounds(100, 100, 330, 311);
-		frameCadastroFuncionario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameCadastroFuncionario.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameCadastroFuncionario.getContentPane().setLayout(null);
+		frameCadastroFuncionario.setLocationRelativeTo(null);
 		
 		
 		//Panel para o label do título
