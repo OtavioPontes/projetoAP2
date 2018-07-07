@@ -1,3 +1,5 @@
+package projeto;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
@@ -13,6 +15,7 @@ public class CadastroContaGUI {
 	private JTextField textFieldLimite;
 	private SelecionaClienteGUI selecionaCliente;
 	private static JLabel labelNomeCliente;
+	private ImageIcon icone = new ImageIcon(getClass().getResource("bancoLS.png"));
 	
 	//atributos para guardar as informações da GUI
 	private Conta contaFinal;
@@ -61,6 +64,7 @@ public class CadastroContaGUI {
 		frameCadastroConta.setBounds(100, 100, 355, 275);
 		frameCadastroConta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameCadastroConta.getContentPane().setLayout(null);
+		frameCadastroConta.setIconImage(icone.getImage());
 		
 		JPanel panelLabelPrincipal = new JPanel();
 		panelLabelPrincipal.setBounds(10, 0, 250, 21);

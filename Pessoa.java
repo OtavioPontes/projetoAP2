@@ -1,4 +1,4 @@
-
+package projeto;
 public abstract class Pessoa {
 
 	

@@ -1,3 +1,5 @@
+package projeto;
+
 public abstract class Conta{
     
     //Atributos
@@ -39,7 +41,11 @@ public abstract class Conta{
     }
     
     //Metodo de saque
-    public abstract void saque(double valor);
+    //Esse método não foi feito abstrato conforme o diagrama pois é a única maneira de atualizar o valor do atributo saldo de fora da classe.
+    public void saque(double valor) throws ContaException{
+    	saldo -= valor;
+    }
+    
     
     //Metodo abstrato de retorno do tipo
     public abstract String getTipo();    

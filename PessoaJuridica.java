@@ -1,4 +1,4 @@
-
+package projeto;
 public class PessoaJuridica extends Pessoa{
 
 	//Atributos

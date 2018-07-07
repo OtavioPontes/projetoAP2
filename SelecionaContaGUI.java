@@ -1,3 +1,4 @@
+package projeto;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class SelecionaContaGUI {
@@ -15,6 +17,7 @@ public class SelecionaContaGUI {
 	private JFrame frameSelecionaConta;
 	private static int selectedIndex;
 	private CaixaEletronicoGUI caixa;
+	private ImageIcon icone = new ImageIcon(getClass().getResource("bancoLS.png"));
 	
 	public SelecionaContaGUI() {
 		//Código para deixar a aparencia semelhante ao SO usado
@@ -46,7 +49,7 @@ public class SelecionaContaGUI {
 		frameSelecionaConta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameSelecionaConta.getContentPane().setLayout(null);
 		frameSelecionaConta.setLocationRelativeTo(null);
-		
+		frameSelecionaConta.setIconImage(icone.getImage());
 		
 		
 		JLabel labelSelecionaConta = new JLabel("Selecione a conta a ser gerenciada:");

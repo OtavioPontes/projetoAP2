@@ -1,3 +1,5 @@
+package projeto;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,6 +20,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class CadastroFuncionarioGUI {
@@ -26,7 +29,8 @@ public class CadastroFuncionarioGUI {
 	private JTextField textFieldNome;
 	private JTextField textFieldCpf;
 	private JTextField textFieldCargo;
-
+	private ImageIcon icone = new ImageIcon(getClass().getResource("bancoLS.png"));
+	
 	//Variaveis para o armazenamento dos dados
 	private Funcionario func;
 	private String nome;
@@ -69,7 +73,7 @@ public class CadastroFuncionarioGUI {
 		frameCadastroFuncionario.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameCadastroFuncionario.getContentPane().setLayout(null);
 		frameCadastroFuncionario.setLocationRelativeTo(null);
-		
+		frameCadastroFuncionario.setIconImage(icone.getImage());
 		
 		//Panel para o label do título
 		JPanel panelLableFuncionario = new JPanel();

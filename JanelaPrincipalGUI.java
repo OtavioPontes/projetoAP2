@@ -1,7 +1,8 @@
-
-import java.awt.EventQueue;
+package projeto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Time;
 import java.awt.*;
 import javax.swing.*;
@@ -13,7 +14,7 @@ import java.util.List;
 public class JanelaPrincipalGUI {
 
 	private JFrame frame;
-	
+	private static JFrame invFrame;
 	private CadastroContaGUI cadastroConta;
 	private CadastroFuncionarioGUI cadastroFuncionario;
 	private CadastroPessoaFisicaGUI cadastroFisica;
@@ -22,12 +23,15 @@ public class JanelaPrincipalGUI {
 	private SelecionaContaGUI selecionarConta;
 	private Calendar c1 = Calendar.getInstance();
 	private JLabel labelHorario;
-	
+	private ImageIcon icone = new ImageIcon(getClass().getResource("bancoLS.png"));
+	private  JTextField  caixaInvisivel;
+	private JOptionPane janela;
 	private static List<Conta> contas = new ArrayList<Conta>();
 	private static List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	private static List<Funcionario> funcionarios = new ArrayList<Funcionario>();
-	
-	
+	private String admin;
+	private int hora7=7,hora10=10,hora14=14,hora21=21;
+	private JTextField textField;
 	
 	/**
 	 * Launch the application.
@@ -36,8 +40,10 @@ public class JanelaPrincipalGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					JanelaPrincipalGUI window = new JanelaPrincipalGUI();
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,7 +77,7 @@ public class JanelaPrincipalGUI {
 	//
 	private void criaLayout() {
 		
-		
+
 		//Timer responsável por atualizar o horário constantemente
 				Timer atualizaHorario = new Timer(10000, new ActionListener() {
 							
@@ -97,15 +103,15 @@ public class JanelaPrincipalGUI {
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		JLabel labelNomeBanco = new JLabel("Banco Los Santos");
-		labelNomeBanco.setBounds(0, 0, 434, 22);
-		labelNomeBanco.setFont(new Font("Tahoma", Font.BOLD, 18));
+		labelNomeBanco.setBounds(0, 7, 434, 22);
+		labelNomeBanco.setFont(new Font("pricedown bl", Font.BOLD, 26));
 		labelNomeBanco.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(labelNomeBanco);
-		
+		frame.setIconImage(icone.getImage());
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 33, 434, 29);
 		frame.getContentPane().add(panel);
-		
+		frame.setTitle("Banco Los Santos");
 		JLabel labelOpcoes = new JLabel("Olá! Selecione uma das opções abaixo:");
 		labelOpcoes.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		labelOpcoes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -116,8 +122,63 @@ public class JanelaPrincipalGUI {
 		frame.getContentPane().add(labelCadastro);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 93, 414, 29);
+		panel_1.setBounds(10, 93, 384, 33);
 		frame.getContentPane().add(panel_1);
+		panel_1.setBackground(Color.LIGHT_GRAY);
+		
+		
+		//cria modo admin para liberar horario
+		
+		
+		caixaInvisivel = new JTextField(20);
+		caixaInvisivel.grabFocus();
+		caixaInvisivel.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					admin = caixaInvisivel.getText();
+					if(admin.equals("admin")){
+						hora7 =0;
+						hora21 = 24;
+						hora10=0;
+						hora14=24;
+						JOptionPane.showMessageDialog(null, "modo admin ativado");
+					}
+				}
+				
+			}
+		});
+		
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(10, 10, 1, 1);
+		panel_3.add(caixaInvisivel);
+		
+		frame.getContentPane().add(panel_3);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		/*
@@ -130,13 +191,11 @@ public class JanelaPrincipalGUI {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				/*
-				if(c1.get(Calendar.HOUR_OF_DAY) < 10 || c1.get(Calendar.HOUR_OF_DAY)> 15){
+				
+				if(c1.get(Calendar.HOUR_OF_DAY) < hora10 || c1.get(Calendar.HOUR_OF_DAY)> hora14){
 					JOptionPane.showMessageDialog(null, "O cadastro de contas só é possível das 10 às 15h");
 				}
-				else{
-				*/
-				
+				else
 				//verifica se há clientes cadastrados
 				if(pessoas.isEmpty()) {
 					JOptionPane.showMessageDialog(frame, "Não é possível cadastrar uma conta sem haver clientes cadastrados.");
@@ -146,7 +205,6 @@ public class JanelaPrincipalGUI {
 				}
 				
 				}
-			
 		});
 		
 		JButton ButtonCadastroPessoaFisica = new JButton("Pessoa Física");
@@ -201,7 +259,7 @@ public class JanelaPrincipalGUI {
 			public void actionPerformed(ActionEvent e) {
 					
 					
-					if(c1.get(Calendar.HOUR_OF_DAY)< 7 || c1.get(Calendar.HOUR_OF_DAY)>22){
+					if(c1.get(Calendar.HOUR_OF_DAY)< hora7 || c1.get(Calendar.HOUR_OF_DAY)>hora21){
 						JOptionPane.showMessageDialog(null, "Só é possivel realizar transações das 7h às 22h");
 					}
 					else
@@ -218,6 +276,9 @@ public class JanelaPrincipalGUI {
 		labelHorario = new JLabel("Horário");
 		labelHorario.setBounds(356, 188, 60, 14);
 		frame.getContentPane().add(labelHorario);
+		
+		
+		
 	}
 	
 	public static void addPessoa(Pessoa pessoa) {

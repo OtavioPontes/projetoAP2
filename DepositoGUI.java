@@ -1,10 +1,11 @@
-
+package projeto;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,6 +23,7 @@ public class DepositoGUI {
 	private  JLabel textoBanco,tagDeposito;
 	private  JButton botaoDeposito;
 	private String deposito;
+	private ImageIcon icone = new ImageIcon(getClass().getResource("bancoLS.png"));
 	
 	public DepositoGUI() {
 		
@@ -50,7 +52,7 @@ public class DepositoGUI {
 		janela.getContentPane().setLayout(g1);
 		janela.setBounds(100, 100, 550, 252);
 		janela.setLocationRelativeTo(null);
-		
+		janela.setIconImage(icone.getImage());
 		painel = new JPanel();
 		painelCabeçalho = new JPanel();
 		painelCabeçalho.setLayout(new GridLayout(2,1));

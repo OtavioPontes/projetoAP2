@@ -1,3 +1,5 @@
+package projeto;
+
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -29,7 +31,7 @@ public class CaixaEletronicoGUI {
 	private SaqueGUI saqueGUI;
 	private DepositoGUI depositoGUI;
 	private Conta conta = JanelaPrincipalGUI.getContas().get(SelecionaContaGUI.getSelectedIndex());
-	
+	private ImageIcon icone = new ImageIcon(getClass().getResource("bancoLS.png"));
 	//Construtor
 	public CaixaEletronicoGUI() {
 		
@@ -114,7 +116,7 @@ public class CaixaEletronicoGUI {
 		janelaCaixa.add(painelSup2, BorderLayout.WEST);
 		janelaCaixa.add(painelSup3, BorderLayout.SOUTH);
 		janelaCaixa.add(painel, BorderLayout.CENTER);
-		
+		janelaCaixa.setIconImage(icone.getImage());
 		janelaCaixa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		janelaCaixa.setVisible(true);
 		

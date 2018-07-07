@@ -1,3 +1,5 @@
+package projeto;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +18,7 @@ public class CadastroPessoaJuridicaGUI {
 	private String nome;
 	private String cnpj;
 	private Endereço end;
-
+	private ImageIcon icone = new ImageIcon(getClass().getResource("bancoLS.png"));
 
 	//Construtor padrão
 	public CadastroPessoaJuridicaGUI() {
@@ -51,7 +53,7 @@ public class CadastroPessoaJuridicaGUI {
 		frameCadastroPJ.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameCadastroPJ.getContentPane().setLayout(null);
 		frameCadastroPJ.setLocationRelativeTo(null);
-		
+		frameCadastroPJ.setIconImage(icone.getImage());
 		
 		//Panel para o label principal
 		JPanel panelCadastro = new JPanel();

@@ -1,3 +1,4 @@
+package projeto;
 import javax.swing.JOptionPane;
 
 public class PessoaFisica extends Pessoa{

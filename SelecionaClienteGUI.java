@@ -1,3 +1,4 @@
+package projeto;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,12 +8,13 @@ import javax.swing.JSlider;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class SelecionaClienteGUI {
 
 	private JFrame frameSelecionaCliente;
-	
+	private ImageIcon icone = new ImageIcon(getClass().getResource("bancoLS.png"));
 	private String selecionado;
 	private String[] nomePessoas;
 	private Pessoa cliente;
@@ -34,6 +36,7 @@ public class SelecionaClienteGUI {
 		frameSelecionaCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameSelecionaCliente.getContentPane().setLayout(null);
 		frameSelecionaCliente.setLocationRelativeTo(null);
+		frameSelecionaCliente.setIconImage(icone.getImage());
 		
 		//métodos para criar array com nome dos clientes cadastrados
 		nomePessoas = new String[JanelaPrincipalGUI.getPessoas().size()];

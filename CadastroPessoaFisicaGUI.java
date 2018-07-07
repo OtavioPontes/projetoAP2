@@ -1,3 +1,5 @@
+package projeto;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +13,7 @@ public class CadastroPessoaFisicaGUI {
 	protected JFrame frameCadastroPF;
 	private JTextField textFieldNome;
 	private JTextField textFieldCpf;
-	
+	private ImageIcon icone = new ImageIcon(getClass().getResource("bancoLS.png"));
 	
 	//Variaveis relacionadas à pessoa física, para guardar dados do cadastro
 	private String nome;
@@ -56,7 +58,7 @@ public class CadastroPessoaFisicaGUI {
 		frameCadastroPF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameCadastroPF.getContentPane().setLayout(null);
 		frameCadastroPF.setLocationRelativeTo(null);
-		
+		frameCadastroPF.setIconImage(icone.getImage());
 		
 		//Panel para o label principal
 		JPanel panelCadastro = new JPanel();
